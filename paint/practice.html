@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src=http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js></script>
+<script src="mydrawing.js"></script>
+<script>
+$(document).ready(function(){
+
+    var cnvs = document.getElementById('cnvs');
+    if (cnvs.getContext) {
+        var ctx = cnvs.getContext('2d');
+        var isDraw = false;
+        var dot = 1;
+        var color = 'rgb(0, 0, 0)';            
+
+        $('#dot').bind('change', function(){ dot = $('#dot').val(); });
+        $('#color').bind('change', function(){ color = $('#color').val(); });
+
+
+        cnvs.onmousemove = function(e){
+
+            if (isDraw) draw(e);
+        }
+        cnvs.onmousedown = function(e){
+
+            if (e.button===0) {
+                isDraw = true;
+                draw(e);
+            }
+        }
+        cnvs.onmouseup = function(e){
+
+            isDraw = false;
+        }
+
+
+        function draw(e)
+        {
+            ctx.fillStyle = color;
+            ctx.fillRect(e.offsetX, e.offsetY, dot, dot);
+        }
+
+    }
+});
+</script>
+
+<title>paint</title>
+
+</head>
+
+<body>
+
+<div>
+    <canvas id="cnvs" width="300" height="300" style="border: 1px solid black;"></canvas>
+    <br />
+    <div>
+        <h3>5 option Pen Size:
+        <select id="dot">
+            <option value="1">1px</option>
+            <option value="2">2px</option>
+            <option value="5">5px</option>
+            <option value="10">10px</option>
+            <option value="10">15px</option>
+        </select></h3>
+        &nbsp;
+        <h3>10 option Colors & Eraser :
+        <select id="color">
+             <option value="rgb(255, 255, 255)">Eraser</option>
+            <option value="rgb(0, 0, 0)">black</option>
+            <option value="rgb(255, 0, 0)">red</option>
+            <option value="rgb(0, 255, 0)">green</option>
+            <option value="rgb(0, 0, 255)">blue</option>
+            <option value="rgb(255, 255, 0)">yellow</option>
+           
+            <option value="rgb(86, 84, 86)">gray</option>
+            <option value="rgb(255,0,255)">Pink</option>
+            <option value="rgb(0, 255, 174)">Mint</option>
+            <option value="rgb(114, 0, 255)">Violet</option>
+        </select></h3>
+
+    </div>
+</div>
+
+</body>
+</html>
+
