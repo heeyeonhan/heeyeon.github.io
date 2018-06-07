@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+   
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .col-25 {
+            float: left;
+            width: 20%;
+            margin-top: 0px;
+        }
+
+        .col-75 {
+            float: left;
+            width: 80%;
+            margin-top: 0px;
+        }
+
+        .topnav {
+            overflow: hidden;
+            background-color: #f1f1f1;
+        }
+
+        .topnav a {
+            float: left;
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            border-bottom: 3px solid transparent;
+        }
+
+        .topnav a:hover {
+            border-bottom: 3px solid red;
+        }
+
+        .topnav a.active {
+            border-bottom: 3px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="emp.js"></script>
+    <div class="topnav">
+        <a href="index.html">Home</a>
+        <a href="customers.html">Customers</a>
+        <a class="active" href="employees.html">Employees</a>
+    </div>
+
+
+    <div style="padding-left:16px">
+        <h2>Employees</h2>
+        <div align="center" style="height: 50%; width: 50%; border:1px solid black;  background-color:rgb(226, 221, 221); ">
+            <p>
+
+                <div style="display:flex;">
+                    <div class="col-25">
+                        ID
+                    </div>
+                    <div class="col-75">
+                        <input id="id" input type="text" style="border:1px solid black;" placeholder="id....." /> </div>
+                </div>
+                <br/>
+
+                <div style="display:flex;">
+                    <div class="col-25">
+                        LAST NAME</div>
+                    <div class="col-75">
+                        <input id="lastname" input type="text" style="border:1px solid black;" placeholder="lastname.....">
+                    </div>
+                </div>
+                </br>
+                <div style="display:flex;">
+                    <div class="col-25">
+                        FIRST NAME</div>
+                    <div class="col-75">
+                        <input id="firstname" input type="text" style="border:1px solid black;" placeholder="firstname.....">
+                    </div>
+                </div>
+                </br>
+                <div style="display:flex;">
+                    <div class="col-25">
+                        BIRTHDAY</div>
+                    <div class="col-75">
+                        <input id="birthday" input type="text" style="border:1px solid black;" placeholder="birthday.....">
+                    </div>
+                </div>
+                </br>
+                <div style="display:flex;">
+                    <div class="col-25">
+                        POSITION</div>
+                    <div class="col-75">
+                        <input id="position" input type="text" style="border:1px solid black;" placeholder="position.....">
+                    </div>
+                </div>
+                </br>
+                <div style="display:flex;">
+                    <div class="col-25">
+                    </div>
+                    <div class="col-75">
+
+                        <button id="button_save" onclick="clickBtn()" style="width: 200px; border:1px solid black;">save</button>
+                    </div>
+
+                </div>
+            </p>
+
+            <table id="list" width="100%" border="1" style=" background-color:white;"> 
+                <tr><th>ID</th><th>LAST NAME</th><th>FIRST NAME</th><th>BIRTHDAY</th><th>AGE</th><th>POSITION</th><th>ACTIONS</th></tr>
+        
+        
+               
+        
+        
+            </table>
+        
+        </div>
+    </div>
+  
+
+
+</body>
+
+</html>
