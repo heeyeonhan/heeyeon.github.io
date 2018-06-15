@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-database.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyA7vJ8LyMYrmbD6ODmGW76RrWAermMBXfA",
+            authDomain: "heeyeon-eb1c9.firebaseapp.com",
+            databaseURL: "https://heeyeon-eb1c9.firebaseio.com",
+            projectId: "heeyeon-eb1c9",
+            storageBucket: "",
+            messagingSenderId: "762306470545"
+        };
+        firebase.initializeApp(config);
+
+        const db = firebase.database()
+
+
+    </script>
+</head>
+
+<body>
+    <h1>GAME CENTER</h1>
+    <div id="main">
+        <div class="scores">
+            <div class="score_box" id="war">
+                00
+            </div>
+            <div class="score_box" id="cav">
+                00
+            </div>
+            <br/>
+
+            <div class="score_labels">
+                WARRIORS
+            </div>
+            <div class="score_labels">
+                CAVALIERS
+            </div>
+        </div>
+        <br/>
+        <h4>Play by Play</h4>
+        <hr/>
+        <!-- PLAY BY PLAY TABLE -->
+        <table width="100%" id="board">
+            <tr>
+                <td>Play</td>
+                <td class="right-align">Score</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        const board = document.getElementById('board')
+        const war = document.getElementById('war')
+        const cav = document.getElementById('cav')
+        const score = {
+            w: 0,
+            c: 0,
+        }
+
+        db.ref('scores').on('child_added', function(data) {
+            if('CAV' === data.val().team) {
+                score.c += parseInt(data.val().points)
+            } else {
+                score.w += parseInt(data.val().points)
+            }
+
+            board.innerHTML += `
+            <tr>
+                <td>${data.val().team.charAt(0)} - ${data.val().desc}</td>
+                <td class="right-align">${data.val().points}</td>
+            </tr>
+            `
+            war.innerText = score.w < 10 ? `0${score.w}` : score.w
+            cav.innerText = score.c < 10 ? `0${score.c}` : score.c
+        })
+    </script>
+</body>
+
+</html>

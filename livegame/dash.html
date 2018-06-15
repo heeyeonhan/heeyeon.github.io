@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-database.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyA7vJ8LyMYrmbD6ODmGW76RrWAermMBXfA",
+            authDomain: "heeyeon-eb1c9.firebaseapp.com",
+            databaseURL: "https://heeyeon-eb1c9.firebaseio.com",
+            projectId: "heeyeon-eb1c9",
+            storageBucket: "",
+            messagingSenderId: "762306470545"
+        };
+        firebase.initializeApp(config);
+
+        const db = firebase.database()
+
+
+    </script>
+</head>
+
+<body>
+    <h1>Dashboard</h1>
+    <div id="main">
+        <h3>Team</h3>
+        <select id="team">
+            <option value="CAV">Cavaliers</option>
+            <option value="WAR">Warriors</option>
+        </select>
+        <h3>Description</h3>
+        <textarea id="description" rows="5"></textarea>
+        <h3>Points</h3>
+        <input id="points" type="text" />
+        <p>
+            <button id="save" onclick="save()">Save</button>
+        </p>
+        <hr/>
+
+        <table width="100%" id="board">
+            <tr>
+                <td>Team</td>
+                <td>Play</td>
+                <td class="right-align">Score</td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        const team = document.getElementById('team')
+        const desc = document.getElementById('description')
+        const points = document.getElementById('points')
+        const board = document.getElementById('board')
+
+        function save() {
+            const doc = {
+                team: team.children[team.selectedIndex].value,
+                desc: desc.value,
+                points: points.value
+            }
+            db.ref('scores').push(doc, function (err) {
+                if (err) console.log(err)
+                else {
+                    board.innerHTML += `
+                    <tr>
+                        <td>${doc.team}</td>
+                        <td>${doc.desc}</td>
+                        <td class="right-align">${doc.points}</td>
+                    </tr>
+                    `
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>
