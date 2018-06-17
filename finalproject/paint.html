@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+    <style>
+    body {margin:0;  font-family: 'Cinzel', serif;}
+
+    .btn {
+    border: none;
+    color: white;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.danger {background-color: #f44336;} /* Red */ 
+.danger:hover {background: #da190b;}
+
+    .topnav {
+      overflow: hidden;
+      background-color: #f1f1f1;
+    }
+    
+    .topnav a {
+      float: left;
+      display: block;
+      color: black;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+      border-bottom: 3px solid transparent;
+    }
+    
+    .topnav a:hover {
+      border-bottom: 3px solid blue;
+    }
+    
+    .topnav a.active {
+      border-bottom: 3px solid blue;
+    }
+    
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    font-size: 16px;    
+    border: none;
+    outline: none;
+    color: black;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+    background-color: #f9f9f9;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+    </style>
+    </head>
+    <body>
+    
+    <div class="topnav">
+      <a href="home.html">Home</a>
+      <div class="dropdown">
+        <button class="dropbtn" >Projects 
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a class="active" href="paint.html">Paint App</a>
+          <a href="ball.html">Bouncing Ball Game</a>
+          <a href="app.html">Wep App using FireBase</a>
+          <a href="game.html">Live Game using FireBase</a>
+          <a href="map.html">My Map</a>
+        </div>
+      </div> 
+      <a href="about.html">About Me</a>
+      <a  href="links.html">Links</a>
+    </div>
+    
+    <div>
+    <h1>Web Paint App <button class="btn danger" onclick="window.location.href='https://heeyeonhan.github.io/paint/hhh.html'">Click if you want to put this into practice!</button> </h1>
+<video width="500"  controls autoplay>
+        <source src="paint.mp4" type="video/mp4">
+ 
+        
+      </video>
+      
+      <p><strong>Note:</strong> 
+        <h3>
+        - Colors (at least 10 colors)
+
+        - Pen Size ( at least 5 sizes)
+        
+        - Eraser</h3></p>
+        
+      
+    </div>
+    
+</body>
+</html>
