@@ -1,0 +1,17 @@
+body{
+    background: #055;
+}
+
+#main{
+    width:960px;
+    min-height:500px;
+    padding:25px;
+    margin:auto;
+    background:#fff;
+    text-align: center;
+}
+
+#my_canvas{
+    margin:auto;
+    border:1px solid #555;
+}
