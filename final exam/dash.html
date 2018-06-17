@@ -5,8 +5,8 @@
 <head>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-database.js"></script>
   <script>
     // Initialize Firebase
     var config = {
@@ -19,9 +19,7 @@
     };
     firebase.initializeApp(config);
 
-    const db = firebase.firestore()
-
-
+    const db = firebase.database()
   </script>
   <style>
     body {
@@ -116,19 +114,60 @@
         </div>
       </p>
       <table id="list" width="100%" border="1" style=" background-color:white;"> 
-        <tr><th>Ball ID</th><th>Color</th><th>Radius</th><th>Status</th></tr>
-
-
-       
-
-
+      <tr><th>Ball ID</th><th>Color</th><th>Radius</th><th>Status</th></tr>
     </table>
 
     </div>
   </div>
-  <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
-  
 
 </body>
+<script>
+  const inputid = document.getElementById('id')
+  const inputcolor = document.getElementById('color')
+  const inputradius = document.getElementById('radius')
+  const list = document.getElementById('list')
 
+  const array = []
+
+  db.ref('ball').on('child_added', function(data) {
+    const doc = data.val()
+    array.push(doc)
+    list.innerHTML += `
+        <tr>
+          <td>${doc.id}</td>
+          <td>${doc.color}</td>
+          <td>${doc.radius}</td>
+          <td>${doc.status}</td>
+        </tr>
+      `
+  });
+
+  db.ref('ball').on('child_changed', function(data) {
+    const doc = data.val()
+    list.innerHTML = ''
+    array.forEach(element => {
+      if (element.id === doc.id) {
+        element.status = doc.status
+      }
+      list.innerHTML += `
+        <tr>
+          <td>${element.id}</td>
+          <td>${element.color}</td>
+          <td>${element.radius}</td>
+          <td>${element.status}</td>
+        </tr>
+      `
+    })
+  })
+
+  function clickBtn(){
+    const doc = {
+      id: inputid.value,
+      color: inputcolor.value,
+      radius: inputradius.value,
+      status: 'Active'
+    }
+    db.ref('ball').push(doc)
+  }
+</script>
 </html>
